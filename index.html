@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>F2L Scrambler</title>
+    <style>
+        body {
+            background-color: #f2f2f2;
+            font-family: Arial, sans-serif;
+        }
+        #scramble {
+            font-size: 24px;
+            text-align: center;
+            margin-top: 100px;
+        }
+        #next-button {
+            background-color: lightblue;
+            color: black;
+            padding: 10px 20px;
+            font-size: 16px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            display: block;
+            margin: 20px auto;
+        }
+    </style>
+</head>
+<body>
+    <div id="scramble">F2L Scramble: <span id="scramble-text"></span></div>
+    <button id="next-button">Next</button>
+
+    <script>
+        var scrambleTextElement = document.getElementById('scramble-text');
+        var nextButton = document.getElementById('next-button');
+        var scrambles = ["R U R'U'", "R' U' R U", "L U' L'", "R U' R'", "R' U R", "L U L' U'", "L'U L", "L' U' L U", "R U R' U U R U' R' U", "L'U'L U U L' U U L U'", "F U F' U U F U' F' U'", "R' U' R U U R' U U R U", "F' U' F U U F' U U F", "L U L' U U L U' L' U", "R U' R' U U F' U' F", "F U' F' U U L' U' L", "F' U F U U R U R'", "R' U R U U B U B' U", "L' U L U U F U F'", "B U' B' U U R' U' R", "B' U B U U L U L'"]; // Your list of scrambles
+        var currentIndex;
+
+        function generateScramble() {
+            var randomIndex = Math.floor(Math.random() * scrambles.length);
+            while (randomIndex === currentIndex) {
+                randomIndex = Math.floor(Math.random() * scrambles.length);
+            }
+            currentIndex = randomIndex;
+            var scramble = scrambles[currentIndex];
+            scrambleTextElement.textContent = scramble;
+        }
+
+        nextButton.addEventListener('click', function() {
+            generateScramble();
+        });
+
+        generateScramble();
+    </script>
+</body>
+</html>
